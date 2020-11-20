@@ -14,16 +14,27 @@ exports.createstudent=(req,res)=>{
     });
 }
 
-exports.getstudents=(req,res)=>
+exports.getstudents=(req,res)=>{
+    StudentSchema.find().then(data=>{
+        res.send(data);
+    }).catch((err)=>{
+        res.send(err);
+    })
+}
+
+exports.getstudentsname=(req,res)=>
 {
-    StudentSchema.find().then((data)=>
+    StudentSchema.find({},{Name:1, StudentID:1}).then((data)=>
     {
-        res.json({data1:data});
+       //console.log(data); 
+        res.json({data:data});
     }).catch((err)=>
     {
         res.send(err);
     });
 }
+
+
 exports.updatestudent=(req,res)=>{
     id=req.params.id;
     data=req.body;
@@ -36,6 +47,7 @@ exports.updatestudent=(req,res)=>{
 
 exports.deletestudent=(req,res)=>{
     id=req.params.id;
+    console.log(id);
     StudentSchema.findByIdAndRemove(id).then(()=>{
         res.json({
             success:true,
