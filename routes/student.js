@@ -6,5 +6,5 @@ const{createstudent,getstudents,updatestudent,deletestudent}=require('../control
 router.post('/createstudent',createstudent);
 router.get('/getstudents',getstudents);
 router.put('/updatestudent/:id',updatestudent);
-router.delete('/deletestudent',deletestudent);
+router.delete('/deletestudent/:id',deletestudent);
 module.exports=router;
